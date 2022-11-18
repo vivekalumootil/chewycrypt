@@ -23,7 +23,7 @@ Person 2 uses the private key to find $a$. Message received.
 
 Here is an analysis of the orders of all components of the encryption scheme:
 
-**Set-up**: The expanded form of the polynomial can be created in $O(p\log{p}k)$ using FFT. This is by far the most time-consuming part. $k$ should be reasonably low, much lower than $p$.
+**Set-up**: The expanded form of the polynomial can be created in $O(pk\log{p})$ using FFT. This is by far the most time-consuming part. $k$ should be reasonably low, much lower than $p$.
 
 **Encryption**: Horner's method calculates $f(a) \pmod{p}$ in $O(\text{deg}(f))$ = $O(p)$. 
 
