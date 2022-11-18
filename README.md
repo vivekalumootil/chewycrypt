@@ -32,7 +32,10 @@ Here is an analysis of the orders of all components of the encryption scheme:
 **Hacking**: A hacker can compute a table of $f(a)$ for every residue $a$ in $O(p^2)$ by simply trying every residue.
 Once this table is created, messages may be intercepted and decoded in $O(1)$. 
 
-## Future updates:
+## Concerns
+It may be possible to reverse-engineering the j-array. It is unclear to me how to efficiently do this but it is not out of the realm of possibility. Also, although encryption and decryption are extremely fast, the set-up is time-consuming and may be problematic. 
+
+## Future updates
 1. Improve FFT algorithm.
 2. Adjust modulus calculations to allow large $p$ values without overflow.
 3. Implement Horner's method. 
