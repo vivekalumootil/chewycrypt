@@ -9,7 +9,7 @@ In the expanded form, we can calculate $f(a)$ in $O(n)$ with Horner's method, wh
 In the nested form, we can solve the equation $f(x) = a$ in $O(k)$ by repeatedly solving for the input of the outermost function.
 
 Now consider instead a nested function $f$ like the one above, but we only care about $f \pmod{p}$ for some prime $p \equiv 2 \pmod{3}$.
-Notice how this polynomial $\pmod{p}$ can also be reduced to have $\leq \text{deg}(p-2)$ with Fermat's little theorem. This simplified polynomial is the public key.
+Notice how this polynomial $\pmod{p}$ can also be reduced to some polynomial $h$ with $\text{deg}(h) \leq (p-2)$ with Fermat's little theorem. This simplified polynomial is the public key.
 The private key is the array of $j$ values (see above). The central idea of the scheme is that in a manner likewise to that listed above, we can solve for 
 $a$ given $f(a)$ in $O(k)$ by precomputing the cubic roots of all values $\pmod{p}$ and applying the nested form that the private key represents.
 Someone without the private key would have to simply try all residues $\pmod{p}$ to find one which matches $f(a)$, which would be $O(p^2)$.
@@ -23,7 +23,7 @@ Person 2 uses the private key to find $a$. Message received.
 
 Here is an analysis of the orders of all components of the encryption scheme:
 
-**Set-up**: The expanded form of the polynomial can be created in $O(pk\log{p})$ using FFT. This is by far the most time-consuming part. $k$ should be reasonably low, much lower than $p$.
+**Set-up**: The expanded form of the polynomial can be created in $O(pk\log{p})$ using FFT. This is by far the most time-consuming part. $k$ should be reasonably low, much lower than $p$, but also $\geq \log_2{p}$.
 
 **Encryption**: Horner's method calculates $f(a) \pmod{p}$ in $O(\text{deg}(f))$ = $O(p)$. 
 
@@ -31,4 +31,12 @@ Here is an analysis of the orders of all components of the encryption scheme:
 
 **Hacking**: A hacker can compute a table of $f(a)$ for every residue $a$ in $O(p^2)$ by simply trying every residue.
 Once this table is created, messages may be intercepted and decoded in $O(1)$. 
+
+## Future updates:
+1. Improve FFT algorithm.
+2. Adjust modulus calculations to allow large $p$ values without overflow.
+3. Implement Horner's method. 
+
+
+
 
