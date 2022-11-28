@@ -110,10 +110,10 @@ vector<int> mod_tables(int p) {
 int encrypt(int msg, vector<int> poly, int p) 
 {
     msg = msg % p;
-    int ctr = 0;
-    for (int i=0; i<poly.size(); i++) {
-        ctr += poly[i]*pow(msg, poly.size()-i-1, p);
-        ctr = ctr % p;
+    int ctr = poly[0];
+    for (int i=0; i<poly.size()-1; i++) {
+        ctr = ctr * msg % p;
+        ctr = (ctr + poly[i+1]) % p;
     }
     return ctr;
 }
@@ -143,8 +143,8 @@ int main()
 
     // Example:
 
-    int P = 5531; // should be 2 mod 3
-    int K = 10;
+    int P = 10631; // should be 2 mod 3
+    int K = 20;
     int L = 20;
     vector<int> rands(K);;
    
